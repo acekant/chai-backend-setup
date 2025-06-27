@@ -5,7 +5,7 @@ import fs from "fs"
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
     api_key: process.env.CLOUDINARY_CLOUD_API_KEY,
-    api_secret: CLOUDINARY_CLOUD_SECRET
+    api_secret: process.env.CLOUDINARY_CLOUD_SECRET
 });
 
 const uploadonCloudinary = async (localFilePath) => {
@@ -17,7 +17,7 @@ const uploadonCloudinary = async (localFilePath) => {
         })
 
         // file has been uploaded successfully
-        console.log("file is uploaded on cloundinary",response.url)
+        fs.unlink(localFilePath)
         return response
     } catch (error) {
         fs.unlinkSync(localFilePath) // remove the locally saved temporary file if operation got failded
