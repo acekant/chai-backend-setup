@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import connectDB from "./db/index.js";
+import { app } from "./app.js";
 
 
 
@@ -10,5 +11,5 @@ connectDB()
     })
 })
 .catch((err) => {
-    console.log("mongodb connection failed")
+    console.log("mongodb connection failed",err.message)
 })
